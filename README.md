@@ -78,3 +78,18 @@ src
     }
  });
 ```
+sendPacket里面干了这样的事：
+```
+ public void sendPacket(Payload payload) {
+    asyncTestFunction(payload, new PayloadResult() {
+        @Override
+        public void onResult(Payload payload) {
+            // 异步处理结果填充Packet中，通知Connection继续执行
+            Packet<Payload> newPacket = new Packet<Payload>();
+            newPacket.setContent(payload);
+            mConnection.processPacket(newPacket);
+        }
+    });
+ }
+```
+异步回调同步化在特殊情况下会解燃眉之急，也可以让旧方法变得更加灵活，最少，方法还是要会的
