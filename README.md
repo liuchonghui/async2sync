@@ -1,4 +1,16 @@
 # async2sync
+compile 'tools.android:async2sync:1.0.0'
+```
+src
+└── tools
+    └── android
+        └── async2sync
+            ├── Connection.java
+            ├── Packet.java
+            ├── PacketCollector.java
+            ├── PacketFilter.java
+            └── RandomIdGenerator.java
+```
 
 假如有一个异步任务实现如下：
 ```
