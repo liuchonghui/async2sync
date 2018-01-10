@@ -1,0 +1,132 @@
+
+import com.android.builder.core.DefaultManifestParser
+
+apply plugin: 'com.android.application'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+    compile "com.android.support:support-v4:${SUPPORT_V4_VERSION}"
+    compile "com.android.support:recyclerview-v7:${COMPILE_SUGGEST_SDK_VERSION}"
+    compile 'com.android.support:multidex:1.0.1'
+	compile project(':interface:interface')
+}
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION.toInteger()
+    buildToolsVersion "${BUILD_TOOLS_VERSION}"
+
+    defaultConfig {
+        multiDexEnabled true
+    }
+
+    dexOptions {
+        jumboMode = true
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['src/main/java']
+            resources.srcDirs = ['src/main/java']
+            aidl.srcDirs = ['src/main/java']
+            renderscript.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+
+        // Move the tests to tests/java, tests/res, etc...
+        instrumentTest.setRoot('tests')
+
+        // Move the build types to build-types/<type>
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/<type>/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+//    signingConfigs {
+//        debug {
+//            storeFile file("sinagame_debug.keystore")
+//        }
+//        release {
+//            storeFile file("sinagame.keystore")
+//            storePassword "sinagame"
+//            keyAlias "sinagame"
+//            keyPassword "sinagame"
+//        }
+//    }
+
+//    buildTypes {
+//        release {
+//            minifyEnabled true
+//            shrinkResources true
+//            zipAlignEnabled true
+//            proguardFiles "proguard-project.txt"
+//            signingConfig signingConfigs.release
+//        }
+//    }
+
+    android {
+        packagingOptions {
+            exclude 'META-INF/DEPENDENCIES.txt'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/NOTICE.txt'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/DEPENDENCIES'
+            exclude 'META-INF/notice.txt'
+            exclude 'META-INF/license.txt'
+            exclude 'META-INF/dependencies.txt'
+            exclude 'META-INF/LGPL2.1'
+            exclude 'lib/arm64-v8a/libbitmaps.so'
+            exclude 'lib/arm64-v8a/libgifimage.so'
+            exclude 'lib/arm64-v8a/libimagepipeline.so'
+            exclude 'lib/arm64-v8a/libmemchunk.so'
+            exclude 'lib/arm64-v8a/libwebp.so'
+            exclude 'lib/arm64-v8a/libwebpimage.so'
+            exclude 'lib/x86_64/libbitmaps.so'
+            exclude 'lib/x86_64/libgifimage.so'
+            exclude 'lib/x86_64/libimagepipeline.so'
+            exclude 'lib/x86_64/libmemchunk.so'
+            exclude 'lib/x86_64/libwebp.so'
+            exclude 'lib/x86_64/libwebpimage.so'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+}
+//apply plugin: 'com.android.application'
+//
+//android {
+//    compileSdkVersion 23
+//    buildToolsVersion "23.0.3"
+//
+//    defaultConfig {
+//        applicationId "tool.whosdomainname.android"
+//        minSdkVersion 9
+//        targetSdkVersion 23
+//        versionCode 1
+//        versionName "1.0"
+//    }
+//    buildTypes {
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+//    }
+//}
+//
+//dependencies {
+//    compile fileTree(dir: 'libs', include: ['*.jar'])
+//    testCompile 'junit:junit:4.12'
+//    compile 'com.android.support:appcompat-v7:23.2.1'
+//}
