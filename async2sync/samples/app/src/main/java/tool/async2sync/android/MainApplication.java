@@ -1,4 +1,4 @@
-package tool.imageloadercompact.android;
+package tool.async2sync.android;
 
 import android.app.Application;
 import android.content.Context;

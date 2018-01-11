@@ -5,7 +5,7 @@ dependencies {
     compile "com.android.support:support-v4:${SUPPORT_V4_VERSION}"
     compile "com.android.support:recyclerview-v7:${COMPILE_SUGGEST_SDK_VERSION}"
     compile 'com.android.support:multidex:1.0.1'
-    compile 'tools.android:interface:1.1.1'
+    compile 'tools.android:async2sync:1.0.0'
 }
 
 android {
